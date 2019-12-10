@@ -1,0 +1,22 @@
+.black {
+	background-color: black!important;
+}
+.white-text {
+	color: white!important;
+}
+#previewImage {
+}
+.background {
+	background-image: url("../images/bg.jpg");
+	background-color: black;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: static;
+}
+
+.cardStyle {
+	    box-shadow: -1px -1px 19px 8px #272727;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Movie Bazaar</title>
+	<!-- Style sheets -->
+	<!-- Bootstrap Min file -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="black background">
+	<div class="container 	">
+		<div class="row">
+			<div class="col col-sm-10 white-text text-center">
+				<h3>Movie Bazaar </h3>
+			</div>
+			<div class="col col-sm-2">
+				<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#addNewMovie">
+				  Add New Movie
+				</button>
+			</div>
+			<hr>
+			<!-- Fetching Data From API movie title - Harry potter -->
+			<div class="col col-sm-4"  id="moviePoster" >
+				<div class="card cardStyle" style="width: 18rem;">
+				  <img v-bind:src="moviePoster" v-on:click="seen = !seen" class="card-img-top" alt="...">
+				  <div class="card-body">
+				  	<h5 class="card-title">{{ movieTitle }}</h5>
+				    <p v-if="!seen" class="card-text">{{ moviePlot }}</p>
+				  </div>
+				</div>
+			</div>
+			<div id="addMovieDetails">
+				<div class="col col-sm-12 " v-if="isSubmitted">
+					<div class="card" style="width: 18rem;">
+					  <img v-bind:src="iurl" v-on:click="seen = !seen" class="card-img-top" alt="...">
+					  <div class="card-body">
+					  	<h5 class="card-title">{{ movieData.mTitle }}</h5>
+					    <p v-if="!seen" class="card-text">{{ movieData.mPlot }}</p>
+					  </div>
+					</div>
+				</div>
+				<!-- Adding New Movie Button -->
+				<div class="col col-sm-12">
+					
+					<!-- Modal -->
+					<div class="modal fade  " id="addNewMovie" tabindex="-1" role="dialog" aria-labelledby="addNewMovieLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-xl" role="document">
+					    <div class="modal-content ">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="addNewMovieLabel">Add New Movie</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body ">
+					       	<div class="container">
+				       			<div class="form-row">
+				       				<div class="col col-sm-12 col-lg-6">
+				       					<div class="col col-sm-12 form-group">
+									    	<label for="inputImage">Movie Poster:</label>
+									    	<input class="form-control" type="file" @change="onFileChange" />
+									    </div>
+									    <div class="form-group col-sm-12">
+									    	<input type="text" name="movieData[]" v-model="movieData.mTitle" placeholder="Title of Movie" class="form-control">
+									    </div>
+									    <div class="form-group col-sm-12">
+										    <textarea class="form-control" placeholder="Short Description" name="movieData[]" v-model="movieData.mPlot"></textarea>
+									    </div>
+				       				</div>
+				       				<!-- Preview Details before submitting -->
+				       				<div class="col col-lg-6 col-sm-12">
+				       					<h3>Preview here</h3>
+				       					<div class="card" style="width: 18rem;">
+										  <img id="previewImage" class="card-img-top" v-if="iurl" :src="iurl" alt="...">
+										  <div class="card-body">
+										  	<h5 class="card-title">{{ movieData.mtitle }}</h5>
+										    <p  class="card-text">{{movieData.mPlot }}</p>
+										  </div>
+										</div>
+				       				</div>
+								</div>
+					       	</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-danger" data-dismiss="modal" >Discard</button>
+					        <button id="addBtn" type="button" class="btn btn-success" onclick="dataS.show_detail()">Add Movie</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script files -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<!-- Vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- custom js -->
+	<script src="assets/js/custom_vue.js"></script>
+</body>
+</html>
